@@ -1,0 +1,26 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+
+const routes: Routes = [
+  { path: '',   redirectTo: 'login', pathMatch: 'full' },
+  {   path: 'login',   component: LoginComponent   },
+  {   path: 'home',   component: HomeComponent   },
+  {   path: 'userDetails',   component: UserDetailsComponent   },
+  {   path: 'users',   component: UserListComponent   },
+  {   path: 'createUser',   component: CreateUserComponent   },
+  {   path: 'updateUser',   component: UpdateUserComponent   },
+  {   path: 'deleteUser',   component: DeleteUserComponent   }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

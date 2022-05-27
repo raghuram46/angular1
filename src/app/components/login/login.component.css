@@ -1,0 +1,40 @@
+/* .container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+    background-image: linear-gradient(to right,white, rgb(0, 140, 255), white);
+    border-radius: 12px;
+}
+
+.app-heading{
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(148, 53, 140);
+    margin: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    min-width: 140px;
+    text-align: center;
+} */
+.login {
+    min-height: 100vh;
+  }
+  
+.bg-image {
+    /* background-image: url('https://source.unsplash.com/WEQbe2jBg40/600x1200'); */
+    background-image: url('https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/conference-img.png');
+    background-size: cover;
+    background-position: center;
+  }
+  
+.login-heading {
+    font-weight: 500;
+  }
+  
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+  }
