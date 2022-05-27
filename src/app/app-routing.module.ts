@@ -4,12 +4,14 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: 'login', pathMatch: 'full' },
+  { path: '',   redirectTo: 'register', pathMatch: 'full' },
+  {   path: 'register',   component: RegisterComponent   },
   {   path: 'login',   component: LoginComponent   },
   {   path: 'home',   component: HomeComponent   },
   {   path: 'userDetails',   component: UserDetailsComponent   },
