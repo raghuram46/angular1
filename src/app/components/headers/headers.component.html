@@ -1,8 +1,43 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-    <div class="navbar-nav">
+<!-- <nav class="navbar navbar-expand navbar-dark" style="background-color: #10202b;">
+    <div class="navbar-nav d-flex">
         <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
         <a class="nav-item nav-link">Search</a>
-        <a class="nav-item nav-link mx-auto">Logout</a>
+        <a class="nav-item nav-link ml-auto" (click)="onLogout()">Logout</a>
+    </div>
+</nav> -->
+
+<!-- <div class="top">
+    <nav class="navbar">
+        <div>
+            <img src="https://assets.ccbp.in/frontend/intermediate-rwd/instagram-story-viewer-logo.png" class="logo" />
+        </div>
+        <div class="search">
+            <input type="text" class="input" />
+            <button class="btn btn-primary ml-2">Search</button>
+        </div>
+        <div class="navbar-right">
+            <div class="options-container">
+                <a class="option" href="#">Users</a>
+                <a class="option" href="#">Logout</a>
+            </div>
+            <img src="https://assets.ccbp.in/frontend/intermediate-rwd/search-icon-img.png" class="search-icon" />
+        </div>
+    </nav>
+</div> -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="https://assets.ccbp.in/frontend/intermediate-rwd/landing-page-logo.png" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+            <a class="nav-link options" routerLink="/users">Users</a>
+            <a class="nav-link options" (click)="onLogout()">Logout</a>
+            <!-- <button class="button">Sign Up</button> -->
+        </div>
     </div>
 </nav>

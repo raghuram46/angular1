@@ -13,9 +13,9 @@ export class UserService {
   
 
   createUser(user: Object): Observable<Object> {
-    //const headers = { 'content-type': 'application/json'};
-    //const body=JSON.stringify(user);
-    return this.http.post(`${this.baseUrl}`, user);
+    // const options = { 'content-type': 'application/json'};
+    // const body=JSON.stringify(user);
+    return this.http.post(`${this.baseUrl}/register`, user);
   }
 
   getAllUsers(): Observable<any>{

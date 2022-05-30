@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
@@ -9,32 +10,61 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
-
-  user: User = new User();
+  registerForm: any = FormGroup;
+  loading = false;
   submitted = false;
+  users: any;
+  newUser: any;
+  user: User = new User();
 
-  constructor(private userService: UserService, private router: Router) { }
+
+  constructor(private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      email: ['', [Validators.required, Validators.email]],
+      age: ['', [Validators.required, Validators.min(18), Validators.max(100)]]
+      });
+
+      this.userService.getAllUsers().subscribe(data => {
+        this.users = data;
+      })
   }
 
-  newUser(): void {
-    this.submitted = false;
-    this.user = new User();
-  }
+  get f() { return this.registerForm.controls; }
 
-  save(){
-    this.userService.createUser(this.user).subscribe((data: any) => {
-      console.log(data);
-      this.user = new User();
-      this.goToList();
-    }),
-    (error: any) => console.log(error),
-    () => console.log("Request Completed");
-  }
 
   goToList() {
     this.router.navigate(['/users']);
   }
 
-}
+  onSubmit() {
+    this.submitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    }
+ 
+  this.newUser = this.users.find((user: { userName: any; }) => user.userName === this.registerForm.value.userName)
+  
+  this.loading = true;
+  if(this.newUser == undefined)
+  {
+    this.userService.createUser(this.registerForm.value).subscribe(data => {
+      console.log(data);
+      this.loading = false; 
+      alert("User Added successfully");
+      this.goToList();
+     }),
+     (error: any) => console.log(error),
+     () => console.log("Request Completed");
+  }else{
+    this.loading = false;
+    alert("User Already exists");
+  }
+  }
+
+  }

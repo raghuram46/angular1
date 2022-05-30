@@ -45,14 +45,14 @@ export class LoginComponent implements OnInit {
   onSubmit(){
   //console.log(this.loginForm.value);
   this.submitted = true;
-
+  
   if (this.loginForm.invalid) {
       return;
   }
 
   this.registeredUser = this.users.find((user: { userName: any; }) => user.userName === this.loginForm.value.userName)
-  console.log(this.registeredUser);
-  if(this.registeredUser !== null)
+ console.log(this.registeredUser)
+  if(this.registeredUser !== undefined)
   {
     this.router.navigate(['/users']);
   }else{

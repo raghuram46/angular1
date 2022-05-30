@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+    font-family: "Roboto";
+}
+
+body {
+    margin: 0px;
+}
+
+.top {
+    background-image: linear-gradient(to right, #f54f5a, #f58529, #f64f59, #d267c4, #00ffff);
+}
+
+@media screen and (min-width:768px) {
+    .top {
+        background-image: linear-gradient(to bottom, #f54f5a, #f58529, #f64f59, #d267c4, #00ffff);
+    }
+}
+
+.navbar {
+    padding: 20px;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+}
+
+.insta {
+    color: white;
+    padding-left: 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.navbar-right {
+    display: flex;
+}
+
+.option {
+    color: white;
+    font-size: 16;
+    margin-right: 50px;
+}
+
+@media screen and (max-width:768px) {
+    .options-container {
+        display: none;
+    }
+}
+
+.heading {
+    color: white;
+    font-family: "Lobster";
+    text-align: center;
+    padding: 10px;
+}
+
+.text {
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width:768px) {
+    .search {
+        display: none;
+    }
+}
+
+.input {
+    width: 350px;
+    height: 40px;
+    border-radius: 8px;
+    border-width: 0px;
+    outline: none;
+    border: none;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    border-width: 0px;
+}
+
+@media screen and (min-width:768px) {
+    .bottom {
+        flex-direction: row;
+    }
+}
+
+.image {
+    height: 70px;
+    width: 70px;
+}
+
+.features {
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+
+
+--------------------------
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+}
+
+.options {
+    font-weight: bold;
+}
+
+.button {
+    font-weight: bold;
+    background-color: #ffdda9;
+    border-radius: 30px;
+    border-width: 0px;
+    padding: 10px;
+    width: 100px;
+}
+.heading {
+    color: white;
+    font-size: 36px;
+    text-align: center;
+}
+
+.links {
+    display: none;
+}

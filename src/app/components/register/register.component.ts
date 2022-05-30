@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     private router: Router
     ) { }
 
-  get fc() { return this.registerForm.controls; }
+  get f() { return this.registerForm.controls; }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -39,22 +39,21 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    //console.log(this.registerForm.value);
     this.submitted = true;
-
     if (this.registerForm.invalid) {
         return;
     }
    
     this.newUser = this.users.find((user: { userName: any; }) => user.userName === this.registerForm.value.userName)
-    console.log(this.newUser);
+    
     this.loading = true;
-    if(this.newUser == null)
+    if(this.newUser == undefined)
     {
       this.userService.createUser(this.registerForm.value).subscribe(data => {
+        this.loading = false; 
         alert("User registered successfully");
-        this.router.navigate(['/login']);
-      })
+         this.router.navigate(['/login']);
+       })
     }else{
       this.loading = false;
       alert("User Already exists");

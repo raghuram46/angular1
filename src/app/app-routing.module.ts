@@ -4,6 +4,7 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
@@ -18,7 +19,8 @@ const routes: Routes = [
   {   path: 'users',   component: UserListComponent   },
   {   path: 'createUser',   component: CreateUserComponent   },
   {   path: 'updateUser',   component: UpdateUserComponent   },
-  {   path: 'deleteUser',   component: DeleteUserComponent   }
+  {   path: 'deleteUser',   component: DeleteUserComponent   },
+  {   path: '**',   component: NotFoundComponent   }
 ];
 
 @NgModule({

@@ -1,47 +1,63 @@
-<div class="card">
-    <h4 class="card-header">User Registration</h4>
-    <div class="card-body">
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="userName">Username</label>
-                <input type="text" id="userName" placeholder="Username" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && fc.username.errors }" />
-                <div *ngIf="submitted && fc.username.errors" class="invalid-feedback">
-                    <div *ngIf="fc.username.errors.required">Username is required</div>
-                    <div *ngIf="fc.userName.errors.minLength">Username must be between 4 to 20 characters</div>
+<div class="container-fluid ps-md-0">
+    <div class="row g-0">
+       <div class="d-md-flex bg-image-register">
+        <div class="col-md-8 col-lg-6">
+            <div class="login d-flex flex-row justify-content-center align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-8 ml-5 mt-2 d-flex flex-column justify-content-center align-items-center">
+                            <h4 class="card-header bg-transparent  " [ngStyle]="{'color': 'white', 'font-size': '24px', 'font-weight': '500' }">User Registration</h4>
+                            <div class="card-body">
+                                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                                    <div class="form-group">
+                                        <label for="userName" [ngStyle]="{'color': 'white', 'font-size': '20px', 'font-weight': '400' }">Username</label>
+                                        <input type="text" id="userName" placeholder="Username" formControlName="userName" class="form-control mb-1" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                                        <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.userName.errors.required">Username is required</div>
+                                            <div *ngIf="f.userName.errors?.['minlength']">Username must be ateast 4 characters</div>
+                                            <div *ngIf="f.userName.errors?.['maxlength']">Username must be maximum of 20 characters</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" [ngStyle]="{'color': 'white', 'font-size': '20px', 'font-weight': '400' }">Password</label>
+                                        <input type="password" id="password" placeholder="password" formControlName="password" class="form-control mb-1" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                            <div *ngIf="f.password.errors.required">Password is required</div>
+                                            <div *ngIf="f.password.errors?.['minlength']">Password must be atleast 8 characters</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" [ngStyle]="{'color': 'white', 'font-size': '20px', 'font-weight': '400' }">Email address</label>
+                                        <input type="email" class="form-control mb-1" id="email" placeholder="name@example.com" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                            <div *ngIf="f.email.errors.required">Email must be a valid email address</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="age" [ngStyle]="{'color': 'white', 'font-size': '20px', 'font-weight': '400' }">Age</label>
+                                        <input type="number" class="form-control mb-1" id="age" placeholder="age" min="18"  max="99" formControlName="age"[ngClass]="{ 'is-invalid': submitted && f.age.errors }">
+                                        <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                                            <div *ngIf="f.age.errors.required">Age is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-center d-flex flex-column">
+                                        <button [disabled]="loading" class="btn btn-primary mt-2" type="submit">
+                                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                            Register
+                                        </button>
+                                        <a routerLink="../login"  class="btn btn-link mt-1" [ngStyle]="{'color': 'white'}">Cancel</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>      
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fc.password.errors }" />
-                <div *ngIf="submitted && fc.password.errors" class="invalid-feedback">
-                    <div *ngIf="fc.password.errors.required">Password is required</div>
-                    <div *ngIf="fc.password.errors.minlength">Password must be at least 6 characters</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email" [ngClass]="{ 'is-invalid': submitted && fc.email.errors }">
-                <div *ngIf="submitted && fc.email.errors" class="invalid-feedback">
-                    <div *ngIf="fc.email.errors.required">Email is required</div>
-                    <div *ngIf="fc.email.errors.email">Email must be a valid email address</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="age">Age</label>
-                <input type="number" class="form-control" id="age" placeholder="age" min="18"  max="99" formControlName="age"[ngClass]="{ 'is-invalid': submitted && fc.age.errors }">
-                <div *ngIf="submitted && fc.age.errors" class="invalid-feedback">
-                    <div *ngIf="fc.age.errors.required">Age is required</div>
-                    <div *ngIf="fc.age.errors.minLength">Age must be minimum of 18 years</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <button [disabled]="loading" class="btn btn-primary" type="submit">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Register
-                </button>
-                <a routerLink="../login" class="btn btn-link">Cancel</a>
-            </div>
-        </form>
+          </div>    
+       </div>
     </div>
 </div>
+
+
+
 

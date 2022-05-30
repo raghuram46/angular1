@@ -3,3 +3,13 @@
     text-align: center;
     box-sizing: content-box;
 }
+
+.users-head{
+    font-size: 28px;
+    font-weight: bold;
+    color: rgb(35, 35, 37);
+}
+
+.add-user{
+    height: 40px;
+}
