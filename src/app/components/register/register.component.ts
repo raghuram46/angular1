@@ -13,6 +13,8 @@ export class RegisterComponent implements OnInit {
   registerForm: any = FormGroup;
   loading = false;
   submitted = false;
+  users: any;
+  newUser: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -20,7 +22,7 @@ export class RegisterComponent implements OnInit {
     private router: Router
     ) { }
 
-  get f() { return this.registerForm.controls; }
+  get fc() { return this.registerForm.controls; }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -29,19 +31,35 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       age: ['', [Validators.required, Validators.min(18), Validators.max(100)]]
       });
+
+      this.userService.getAllUsers().subscribe(data => {
+        this.users = data;
+      })
+      
   }
 
   onSubmit(){
-    console.log(this.registerForm.value);
+    //console.log(this.registerForm.value);
     this.submitted = true;
 
-  if (this.registerForm.invalid) {
-      return;
-  }
-  if(this.submitted)
-  {
-    this.router.navigate(['/users']);
-  }
-  }
+    if (this.registerForm.invalid) {
+        return;
+    }
+   
+    this.newUser = this.users.find((user: { userName: any; }) => user.userName === this.registerForm.value.userName)
+    console.log(this.newUser);
+    this.loading = true;
+    if(this.newUser == null)
+    {
+      this.userService.createUser(this.registerForm.value).subscribe(data => {
+        alert("User registered successfully");
+        this.router.navigate(['/login']);
+      })
+    }else{
+      this.loading = false;
+      alert("User Already exists");
+      this.router.navigate(['/login']);
+    }
+    }
 
 }

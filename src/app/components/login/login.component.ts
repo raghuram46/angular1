@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,9 @@ export class LoginComponent implements OnInit {
 
   title = "User Login";
   submitted = false;
-  registerForm: any = FormGroup;
+  loginForm: any = FormGroup;
+  users: any;
+  registeredUser: any;
 
   // userForm = new FormGroup({
   //   userName: new FormControl(),
@@ -20,30 +23,41 @@ export class LoginComponent implements OnInit {
   //   age: new FormControl()
   // });
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+     private userService: UserService,
+      private router: Router
+      ) { }
 
   //Add user form actions
-  get f() { return this.registerForm.controls; }
+  get f() { return this.loginForm.controls; }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
     userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
-    email: ['', [Validators.required, Validators.email]],
-    age: ['', [Validators.required, Validators.min(18), Validators.max(100)]]
+    password: ['', [Validators.required, Validators.minLength(8)]]
     });
+
+    this.userService.getAllUsers().subscribe(data => {
+      this.users = data;  
+    })
   }
 
   onSubmit(){
-    console.log(this.registerForm.value);
-    this.submitted = true;
+  //console.log(this.loginForm.value);
+  this.submitted = true;
 
-  if (this.registerForm.invalid) {
+  if (this.loginForm.invalid) {
       return;
   }
-  if(this.submitted)
+
+  this.registeredUser = this.users.find((user: { userName: any; }) => user.userName === this.loginForm.value.userName)
+  console.log(this.registeredUser);
+  if(this.registeredUser !== null)
   {
     this.router.navigate(['/users']);
+  }else{
+    alert("User doesn't exists");
+    this.router.navigate(['/register']);
   }
   }
 

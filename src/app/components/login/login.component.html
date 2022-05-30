@@ -9,22 +9,22 @@
                     <h1 class="login-heading mb-4">{{title}}</h1>
     
                     <!-- Sign In Form -->
-                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="userName" placeholder="Username" formControlName="userName"[ngClass]="{ 'is-invalid': submitted && f.userName.errors }">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group mb-3">
+                            <label for="userName">Username</label>
+                            <input type="text" class="form-control" id="userName" placeholder="Username" formControlName="userName" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }">
                             <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
                                 <div *ngIf="f.userName.errors.required">Username is required</div>
                                 <div *ngIf="f.userName.errors.minLength">Username must be between 4 to 20 characters</div>
                             </div>
-                            <label for="userName">Username</label>
                         </div>
-                        <div class="form-floating mb-3">
+                        <div class="form-group mb-3">
+                            <label for="password">Password</label>
                             <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password"[ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                 <div *ngIf="f.password.errors.required">Password is required</div>
                                 <div *ngIf="f.password.errors.minLength">Password must be atleast 8 characters</div>
                             </div>
-                            <label for="password">Password</label>
                         </div>
   
                         <div class="form-check mb-3">
