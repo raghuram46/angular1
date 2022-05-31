@@ -5,8 +5,8 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th style="width: 10%">User Id</th>
-            <th style="width: 25%">USERNAME</th>
+            <th style="width: 15%">User Id</th>
+            <th style="width: 20%">USERNAME</th>
             <th style="width: 25%">Email Address</th>
             <th style="width: 25%">Age</th>
             <th style="width: 25%"></th>
@@ -14,14 +14,14 @@
     </thead>
     <tbody>
         <tr *ngFor="let user of users">
-            <td>{{user.userId}}</td>
+            <td class="pl-4">{{user.userId}}</td>
             <td>{{user.userName}}</td>
             <td>{{user.email}}</td>
-            <td>{{user.age}}</td>
+            <td class="pl-3">{{user.age}}</td>
             <td style="white-space: nowrap">
-                <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary">Edit</a>
-                <button class="btn btn-sm btn-danger btn-delete-user">
-                    <span *ngIf="false" class="spinner-border spinner-border-sm"></span>
+                <a (click)="update(user.userId)" class="btn btn-sm btn-primary mr-2">Edit</a>
+                <button class="btn btn-sm btn-danger btn-delete-user" (click)="deleteUser(user.userId)" [disabled]="user.isDeleting">
+                    <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
                     <span *ngIf="!user.isDeleting">Delete</span>
                 </button>
             </td>
@@ -33,3 +33,4 @@
         </tr>
     </tbody>
 </table>
+

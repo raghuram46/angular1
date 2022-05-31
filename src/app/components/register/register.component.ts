@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private cookies: CookieService
     ) { }
 
   get f() { return this.registerForm.controls; }
@@ -38,12 +40,13 @@ export class RegisterComponent implements OnInit {
       
   }
 
+
+
   onSubmit(){
     this.submitted = true;
     if (this.registerForm.invalid) {
         return;
     }
-   
     this.newUser = this.users.find((user: { userName: any; }) => user.userName === this.registerForm.value.userName)
     
     this.loading = true;

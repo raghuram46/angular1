@@ -11,15 +11,15 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { UserListComponent } from './components/user-list/user-list.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: 'register', pathMatch: 'full' },
-  {   path: 'register',   component: RegisterComponent   },
+  { path: '',   redirectTo: 'home', pathMatch: 'full' },
+  {   path: 'register',  component: RegisterComponent   },
   {   path: 'login',   component: LoginComponent   },
   {   path: 'home',   component: HomeComponent   },
-  {   path: 'userDetails',   component: UserDetailsComponent   },
+  {   path: 'userDetails/:id',   component: UserDetailsComponent   },
   {   path: 'users',   component: UserListComponent   },
   {   path: 'createUser',   component: CreateUserComponent   },
-  {   path: 'updateUser',   component: UpdateUserComponent   },
-  {   path: 'deleteUser',   component: DeleteUserComponent   },
+  {   path: 'users/updateUser/:userId',   component: UpdateUserComponent   },
+  {   path: 'deleteUser/:id',   component: DeleteUserComponent   },
   {   path: '**',   component: NotFoundComponent   }
 ];
 
