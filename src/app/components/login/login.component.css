@@ -28,6 +28,10 @@
     background-size: cover;
     background-position: center;
   }
+
+  .form{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
   
 .login-heading {
     font-weight: 500;

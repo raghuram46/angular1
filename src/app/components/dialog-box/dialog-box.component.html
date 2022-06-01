@@ -1,0 +1,20 @@
+<mat-dialog-content class="mat-typography">
+    <ul>
+        <li *ngFor="let comment of comments">
+            <div class="d-flex flex-row justify-content-between">
+                <p class="ml-3" [ngStyle]="{'color': '#3a0a3d','font-size': '20px', 'font-weight': 'bold' }">{{comment.commentedBy}}</p>
+                <p class="mr-3">{{comment.commentedAt | date: 'medium'}}</p>
+            </div>
+            <p class="ml-3">{{comment.content}}</p>
+            <div class="d-flex flex-row justify-content-between">
+                <button class="bg-transparent" mat-fab color="primary" aria-label="icon button with a delete icon">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </li>
+    </ul>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>New Comment</button>
+</mat-dialog-actions>

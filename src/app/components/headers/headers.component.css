@@ -17,13 +17,9 @@ body {
     }
 }
 
-.navbar {
-    padding: 20px;
-}
-
 .logo {
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
 }
 
 .insta {

@@ -1,13 +1,18 @@
 .bg-image-register {
-    background-image: url('https://source.unsplash.com/WEQbe2jBg40/600x1200');
+    background-image: url('https://img.freepik.com/free-photo/modern-futuristic-sci-fi-background_35913-2152.jpg?size=626&ext=jpg&ga=GA1.2.550288389.1654063047');
     background-size: cover;
     background-position: center;
     min-height: 100vh;
-    padding-left: 400px;
+    padding-left: 355px;
   }
 
 .card-body{
-    height: 500px;
+    height: 480px;
     width: 500px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(218, 206, 206, 0.35) 0px 5px 15px;
+}
+
+.card-header{
+  margin-left: 130px;
+  min-width: 100%;
 }

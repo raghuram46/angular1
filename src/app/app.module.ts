@@ -7,7 +7,6 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
-import { DeleteUserComponent } from './components/delete-user/delete-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
@@ -17,6 +16,16 @@ import { RegisterComponent } from './components/register/register.component';
 import { NotFoundComponent } from './components/not-found/not-found.component'; 
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CommentsListComponent } from './components/comments-list/comments-list.component';
+import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -25,19 +34,28 @@ import { AuthService } from './services/auth.service';
     UserListComponent,
     UserDetailsComponent,
     UpdateUserComponent,
-    DeleteUserComponent,
     LoginComponent,
     HomeComponent,
     HeadersComponent,
     RegisterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CommentsListComponent,
+    DialogBoxComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatToolbarModule,
+    MatBadgeModule,
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [UserService, AuthService],
   bootstrap: [AppComponent]
