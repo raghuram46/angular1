@@ -71,7 +71,6 @@ export class LoginComponent implements OnInit {
     
   }else{
     alert("User doesn't exists");
-    this.router.navigate(['/register']);
   }
   }
 

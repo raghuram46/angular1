@@ -1,20 +1,22 @@
-<mat-dialog-content class="mat-typography">
-    <ul>
+<mat-dialog-content class="mat-typography dialog-box">
+    <p *ngIf="comments.length===0">No Comments</p>
+    <ul class="dialog-box-list">
         <li *ngFor="let comment of comments">
-            <div class="d-flex flex-row justify-content-between">
-                <p class="ml-3" [ngStyle]="{'color': '#3a0a3d','font-size': '20px', 'font-weight': 'bold' }">{{comment.commentedBy}}</p>
-                <p class="mr-3">{{comment.commentedAt | date: 'medium'}}</p>
-            </div>
-            <p class="ml-3">{{comment.content}}</p>
-            <div class="d-flex flex-row justify-content-between">
-                <button class="bg-transparent" mat-fab color="primary" aria-label="icon button with a delete icon">
-                    <mat-icon>delete</mat-icon>
+            <div class="d-flex flex-row justify-content-between ">
+                <p class="mt-2 ml-0" [ngStyle]="{'font-size': '16px'}">{{comment.content}}</p>
+                <button class="bg-transparent mr-3" mat-icon-button aria-label="icon button with a delete and edit icon">
+                    <mat-icon (click)="openDialog(comment.commentId)" color="primary">edit</mat-icon>
+                    <mat-icon color="warn" class="pl-3">delete</mat-icon>
                 </button>
+            </div>
+            <div class="d-flex flex-row justify-content-between">
+                <p class="mt-5 fw-bold" [ngStyle]="{'color': '#3a0a3d','font-size': '16px'}"><span [ngStyle]="{'color': 'black', 'font-weight': '200'}">Commented by:</span> {{comment.commentedBy}}</p>
+                <p class="mt-5">{{comment.commentedAt | date: 'medium'}}</p>
             </div>
         </li>
     </ul>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>New Comment</button>
+    <button routerLink="/createComment" mat-button [mat-dialog-close]="true" cdkFocusInitial>New Comment</button>
 </mat-dialog-actions>

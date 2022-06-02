@@ -1,0 +1,9 @@
+.dialog-box{
+    min-width: 600px;
+}
+
+
+.dialog-box-list{
+    list-style-type: none;
+    padding: 0;
+}

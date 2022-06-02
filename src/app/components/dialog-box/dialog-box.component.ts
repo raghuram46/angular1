@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UpdateCommentComponent } from '../update-comment/update-comment.component';
+
 
 @Component({
   selector: 'app-dialog-box',
@@ -7,12 +9,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./dialog-box.component.css']
 })
 export class DialogBoxComponent implements OnInit {
-  comments: any;
-  constructor(private router: Router,
-    private route: ActivatedRoute) { }
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogBoxComponent>,
+    @Inject(MAT_DIALOG_DATA) public comments: any,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.comments = this.route.snapshot.params['comments']
+  }
+
+  openDialog(commentId: any) {
+    const dialogRef = this.dialog.open(UpdateCommentComponent,{
+      data: commentId
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

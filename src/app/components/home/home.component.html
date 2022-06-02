@@ -1,19 +1,25 @@
 <app-headers></app-headers>
-<div class="container">
+<div class="container-fluid px-auto">
     <div class="row">
+        <div class="col-2 pr-0">
+            <button routerLink="/createPost" class="btn btn-success mt-3 ml-3 mr-0">Create New Post</button>
+        </div>
         <div class="col-9">
-            <ul>
-                <li *ngFor="let post of posts; let i=index" class="card p-2 m-2">
-                    <div class="d-flex flex-row justify-content-between">
-                        <p class="ml-3" [ngStyle]="{'color': '#3a0a3d','font-size': '20px', 'font-weight': 'bold' }">{{post.postedBy}}</p>
+            <ul class="px-0 ml-0">
+                <li *ngFor="let post of posts; let i=index" class="card p-2 my-3 mx-0">
+                    <div class="d-flex flex-row justify-content-between mt-1 mb-3">
+                        <p class="ml-2" [ngStyle]="{'color': '#3a0a3d','font-size': '20px', 'font-weight': 'bold' }">{{post.postedBy}}</p>
                         <p class="mr-3">{{post.postedAt | date: 'medium'}}</p>
                     </div>
-                    <p class="ml-3">{{post.description}}</p>
-                    <div class="d-flex flex-row justify-content-between">
-                        <button (click)="openDialog(post.comments)" mat-dialog-title class="bg-transparent" mat-fab color="primary" aria-label="icon button with a delete icon">
-                            <mat-icon matBadge="15" matBadgeColor="warn">comment</mat-icon>
-                        </button>
-                        <button class="bg-transparent" mat-fab color="primary" aria-label="icon button with a delete icon">
+                    <p class="ml-2">{{post.description}}</p>
+                    <div class="d-flex flex-row justify-content-between mt-3">
+                        <div class="d-flex">
+                            <button (click)="openDialog(post.comments)" mat-dialog-title mat-icon-button color="secondary" aria-label="icon button with a delete icon">
+                                <mat-icon matBadge="{{post.comments.length}}" matBadgeColor="warn">comment</mat-icon>
+                            </button>
+                            <p class="mt-2 ml-2 pt-1">Comment</p>
+                        </div>
+                        <button (click)="onDelete(post.postId)"  mat-icon-button color="secondary" aria-label="icon button with a delete icon">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </div>  

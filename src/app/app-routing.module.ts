@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateCommentComponent } from './components/create-comment/create-comment.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -18,6 +20,8 @@ const routes: Routes = [
   {   path: 'users',   component: UserListComponent   },
   {   path: 'createUser',   component: CreateUserComponent   },
   {   path: 'users/updateUser/:userId',   component: UpdateUserComponent   },
+  {   path: 'createPost',   component: CreatePostComponent   },
+  {   path: 'createComment',   component: CreateCommentComponent   },
   {   path: '**',   component: NotFoundComponent   }
 ];
 

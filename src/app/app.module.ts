@@ -26,6 +26,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CommentsListComponent } from './components/comments-list/comments-list.component';
 import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { CreateCommentComponent } from './components/create-comment/create-comment.component';
+import { UpdateCommentComponent } from './components/update-comment/update-comment.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,10 @@ import { DialogBoxComponent } from './components/dialog-box/dialog-box.component
     RegisterComponent,
     NotFoundComponent,
     CommentsListComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    CreatePostComponent,
+    CreateCommentComponent,
+    UpdateCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +62,8 @@ import { DialogBoxComponent } from './components/dialog-box/dialog-box.component
     MatToolbarModule,
     MatBadgeModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSidenavModule
   ],
   providers: [UserService, AuthService],
   bootstrap: [AppComponent]

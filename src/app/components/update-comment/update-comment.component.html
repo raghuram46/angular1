@@ -1,0 +1,19 @@
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+    <div class="d-flex justify-content-end">
+        <mat-icon mat-dialog-close class="align-self-end">close</mat-icon>
+    </div>
+    <div class="form-group">
+        <label for="content" [ngStyle]="{'font-size': '16px', 'font-weight': '400' }">Comment message</label>
+        <textarea rows="3" cols="50" id="content" placeholder="content" formControlName="content" class="form-control mb-1" [ngClass]="{ 'is-invalid': submitted && f.content.errors }"></textarea>
+        <div *ngIf="submitted && f.content.errors" class="invalid-feedback">
+            <div *ngIf="f.content.errors.required">Message required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" [mat-dialog-close]="true" class="btn btn-primary" type="submit">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Update
+        </button>
+    </div>
+</form>
+

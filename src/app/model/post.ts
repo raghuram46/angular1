@@ -3,6 +3,7 @@ export class Post {
     description: string = '';
     postedBy: string = '';
     postedAt: any = '';
+    userId: number = 0;
     comments: any;
 }
 

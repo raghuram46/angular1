@@ -3,4 +3,6 @@ export class Comment {
     content: string = '';
     commentedBy: string = '';
     commentedAt: any = '';
+    userId: number = 0;
+    postId: number = 0;
 }

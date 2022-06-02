@@ -13,7 +13,7 @@ export class PostService {
 
   createPost(post: Object): Observable<Object> {
     // const options = { 'content-type': 'application/json'};
-    // const body=JSON.stringify(user);
+    //const body=JSON.stringify(post);
     return this.http.post(`${this.baseUrl}/create`, post);
   }
 
