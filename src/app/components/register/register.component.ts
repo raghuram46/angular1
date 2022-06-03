@@ -27,6 +27,11 @@ export class RegisterComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   ngOnInit(): void {
+    const jwtToken = this.cookies.get('jwt_token');
+    if(jwtToken){
+      this.router.navigateByUrl('/');
+    }
+
     this.registerForm = this.formBuilder.group({
       userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(8)]],

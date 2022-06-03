@@ -36,6 +36,11 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   ngOnInit() {
+    const jwtToken = this.cookies.get('jwt_token');
+    if(jwtToken){
+      this.router.navigateByUrl('/');
+    }
+
     this.loginForm = this.formBuilder.group({
     userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
     password: ['', [Validators.required, Validators.minLength(8)]]
@@ -45,9 +50,6 @@ export class LoginComponent implements OnInit {
       this.users = data;  
     })
 
-    const jwtToken = this.cookies.get('jwt_token');
-    console.log(jwtToken)
-
   }
 
 
@@ -56,23 +58,27 @@ export class LoginComponent implements OnInit {
   if (this.loginForm.invalid) {
       return;
   }
-
+  
   this.registeredUser = this.users.find((user: { userName: any; }) => user.userName === this.loginForm.value.userName)
+  console.log(this.registeredUser)
+  if(this.registeredUser!== undefined ){
+      if(this.registeredUser.password === this.loginForm.value.password)
+      {
+        const requestBody = {userName: this.loginForm.value.userName, password: this.loginForm.value.password}
+        this.authService.generateToken(requestBody).subscribe((data) => {
+          const parsedData = JSON.parse(data);
+          this.cookies.set('jwt_token', parsedData.JWT, {expires: 30})
+        })
+        this.router.navigateByUrl('/');
 
-  if(this.registeredUser!==null && this.registeredUser.password === this.loginForm.value.password)
-  {
-    const requestBody = {userName: this.loginForm.value.userName, password: this.loginForm.value.password}
-    // this.authService.generateToken(requestBody).subscribe((data) => {
-    //   this.cookies.set('jwt_token', data, {expires: 30})
-    //   this.router.navigateByUrl('/');
-    // })
-    this.router.navigateByUrl('/');
-
-    
-  }else{
+      }else{
+        alert("Password didn't match");
+      }
+  }
+  else {
     alert("User doesn't exists");
   }
-  }
 
+}
 
 }

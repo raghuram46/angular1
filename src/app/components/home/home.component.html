@@ -1,11 +1,17 @@
-<app-headers></app-headers>
 <div class="container-fluid px-auto">
-    <div class="row">
-        <div class="col-2 pr-0">
-            <button routerLink="/createPost" class="btn btn-success mt-3 ml-3 mr-0">Create New Post</button>
+    <div class="row pl-2">
+        <div class="col-12 d-flex">
+            <p class="user-card-all mt-3">All posts</p>
+            <ul class="d-flex mt-2 pl-0 mb-0">
+                <li class="user-card" *ngFor="let user of users">
+                    {{user.userName.split("")[0] | uppercase}}
+                </li>
+            </ul>
         </div>
-        <div class="col-9">
-            <ul class="px-0 ml-0">
+    </div>
+    <div class="row">
+        <div class="col-10 pl-4">
+            <ul class="px-0">
                 <li *ngFor="let post of posts; let i=index" class="card p-2 my-3 mx-0">
                     <div class="d-flex flex-row justify-content-between mt-1 mb-3">
                         <p class="ml-2" [ngStyle]="{'color': '#3a0a3d','font-size': '20px', 'font-weight': 'bold' }">{{post.postedBy}}</p>
@@ -14,17 +20,19 @@
                     <p class="ml-2">{{post.description}}</p>
                     <div class="d-flex flex-row justify-content-between mt-3">
                         <div class="d-flex">
-                            <button (click)="openDialog(post.comments)" mat-dialog-title mat-icon-button color="secondary" aria-label="icon button with a delete icon">
-                                <mat-icon matBadge="{{post.comments.length}}" matBadgeColor="warn">comment</mat-icon>
+                            <button (click)="openDialog(post.comments, post.postId)" mat-dialog-title mat-icon-button color="secondary" aria-label="icon button with a delete icon">
+                                <mat-icon [ngStyle]="{'font-size': '30px'}"  matBadge="{{post.comments.length}}" matBadgeColor="warn">comment</mat-icon>
                             </button>
-                            <p class="mt-2 ml-2 pt-1">Comment</p>
                         </div>
                         <button (click)="onDelete(post.postId)"  mat-icon-button color="secondary" aria-label="icon button with a delete icon">
-                            <mat-icon>delete</mat-icon>
+                            <mat-icon [ngStyle]="{'font-size': '25px'}">delete</mat-icon>
                         </button>
                     </div>  
                 </li>
             </ul>
+        </div>
+        <div class="col-2">
+            <button routerLink="/createPost" class="btn btn-success mt-3 ml-3 mr-0">Create New Post</button>
         </div>
     </div>
 </div>

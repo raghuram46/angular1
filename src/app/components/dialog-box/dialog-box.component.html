@@ -6,7 +6,7 @@
                 <p class="mt-2 ml-0" [ngStyle]="{'font-size': '16px'}">{{comment.content}}</p>
                 <button class="bg-transparent mr-3" mat-icon-button aria-label="icon button with a delete and edit icon">
                     <mat-icon (click)="openDialog(comment.commentId)" color="primary">edit</mat-icon>
-                    <mat-icon color="warn" class="pl-3">delete</mat-icon>
+                    <mat-icon (click)="onDelete(comment.commentId)" color="warn" class="pl-3">delete</mat-icon>
                 </button>
             </div>
             <div class="d-flex flex-row justify-content-between">
@@ -18,5 +18,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button routerLink="/createComment" mat-button [mat-dialog-close]="true" cdkFocusInitial>New Comment</button>
+    <button (click)="openNewCommentDialog()"  mat-button [mat-dialog-close]="true" cdkFocusInitial>New Comment</button>
 </mat-dialog-actions>

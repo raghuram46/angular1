@@ -1,42 +1,30 @@
-<div class="add-container">
-    <div class="card-body mt-5">
-        <h1 class="text-center fw-500">New Comment</h1>
-        <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="content" [ngStyle]="{'font-size': '20px', 'font-weight': '400' }">Comment message</label>
-                <textarea rows="3" cols="50" id="content" placeholder="content" formControlName="content" class="form-control mb-1" [ngClass]="{ 'is-invalid': submitted && f.content.errors }"></textarea>
-                <div *ngIf="submitted && f.content.errors" class="invalid-feedback">
-                    <div *ngIf="f.content.errors.required">Message required</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="commentedBy" [ngStyle]="{'font-size': '20px', 'font-weight': '400' }">Comment By</label>
-                <input type="text" id="commentedBy" placeholder="commentedBy" formControlName="commentedBy" class="form-control mb-1" [ngClass]="{ 'is-invalid': submitted && f.commentedBy.errors }" />
-                <div *ngIf="submitted && f.commentedBy.errors" class="invalid-feedback">
-                    <div *ngIf="f.commentedBy.errors.required">Required</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="userId" [ngStyle]="{'font-size': '20px', 'font-weight': '400' }">User Id</label>
-                <input type="number" class="form-control mb-1" id="userId" placeholder="userId" formControlName="userId" [ngClass]="{ 'is-invalid': submitted && f.userId.errors }">
-                <div *ngIf="submitted && f.userId.errors" class="invalid-feedback">
-                    <div *ngIf="f.userId.errors.required">UserId is required</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="postId" [ngStyle]="{'font-size': '20px', 'font-weight': '400' }">Post Id</label>
-                <input type="number" class="form-control mb-1" id="postId" placeholder="postId" formControlName="postId" [ngClass]="{ 'is-invalid': submitted && f.postId.errors }">
-                <div *ngIf="submitted && f.postId.errors" class="invalid-feedback">
-                    <div *ngIf="f.postId.errors.required">Post is required</div>
-                </div>
-            </div>
-            <div class="form-group text-center">
-                <button [disabled]="loading" class="btn btn-primary mt-2" type="submit">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Add
-                </button>
-            </div>
-        </form>
+<h1 class="text-center fw-500">New Comment</h1>
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="content" [ngStyle]="{'font-size': '20px', 'font-weight': '400' }">Comment message</label>
+        <textarea rows="3" cols="50" id="content" placeholder="content" formControlName="content" class="form-control mb-1" [ngClass]="{ 'is-invalid': submitted && f.content.errors }"></textarea>
+        <div *ngIf="submitted && f.content.errors" class="invalid-feedback">
+            <div *ngIf="f.content.errors.required">Message required</div>
+        </div>
     </div>
-    
-</div>
+    <div class="form-group">
+        <label for="commentedBy" [ngStyle]="{'font-size': '20px', 'font-weight': '400' }">Comment By</label>
+        <input type="text" id="commentedBy" placeholder="commentedBy" formControlName="commentedBy" class="form-control mb-1" [ngClass]="{ 'is-invalid': submitted && f.commentedBy.errors }" />
+        <div *ngIf="submitted && f.commentedBy.errors" class="invalid-feedback">
+            <div *ngIf="f.commentedBy.errors.required">Required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="userId" [ngStyle]="{'font-size': '20px', 'font-weight': '400' }">User Id</label>
+        <input type="number" class="form-control mb-1" id="userId" placeholder="userId" formControlName="userId" [ngClass]="{ 'is-invalid': submitted && f.userId.errors }">
+        <div *ngIf="submitted && f.userId.errors" class="invalid-feedback">
+            <div *ngIf="f.userId.errors.required">UserId is required</div>
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <button mat-dialog-close [disabled]="loading" class="btn btn-primary mt-2" type="submit">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Add
+        </button>
+    </div>
+</form>

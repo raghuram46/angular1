@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -18,9 +19,15 @@ export class CreatePostComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private postService: PostService,
-    private router: Router) { }
+    private router: Router,
+    private cookies: CookieService) { }
 
   ngOnInit(): void {
+    const jwtToken = this.cookies.get('jwt_token');
+      if(!jwtToken){
+        this.router.navigateByUrl('/login')
+      }
+      
     this.postForm = this.formBuilder.group({
       description: ['', [Validators.required]],
       postedBy: ['', [Validators.required]],

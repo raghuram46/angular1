@@ -14,7 +14,7 @@ export class HeadersComponent implements OnInit {
   }
 
   onLogout(){
-    //this.cookies.delete('jwt_token');
+    this.cookies.delete('jwt_token');
     this.router.navigateByUrl('/login');
   }
 

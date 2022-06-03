@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { first } from 'rxjs';
 import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 
 @Component({
@@ -13,22 +14,38 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 })
 export class HomeComponent implements OnInit {
   posts: any;
+  users: any;
 
   constructor(private cookies: CookieService,
      private router: Router,
+     private userService: UserService,
      private postService: PostService,
-     public dialog: MatDialog) { }
+     public dialog: MatDialog) {
+
+      const jwtToken = this.cookies.get('jwt_token');
+      if(!jwtToken){
+        this.router.navigateByUrl('/login')
+      }
+  }
 
   ngOnInit(): void {
+    this.userService.getAllUsers().subscribe(data => {
+      this.users = data;
+      console.log(data)
+    })
+
     this.postService.getAllPosts().subscribe(data => {
       this.posts = data;
       console.log(data)
     })
   }
 
-  openDialog(comments: any) {
+  openDialog(comments: any, postId: number) {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
-      data: comments
+      data: {
+        commentsList: comments,
+        postId: postId
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

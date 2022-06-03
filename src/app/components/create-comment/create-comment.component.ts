@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
@@ -17,15 +19,21 @@ export class CreateCommentComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public postId: any,
     private commentService: CommentService,
-    private router: Router) { }
+    private router: Router,
+    private cookies: CookieService) { }
 
   ngOnInit(): void {
+    const jwtToken = this.cookies.get('jwt_token');
+      if(!jwtToken){
+        this.router.navigateByUrl('/login')
+      }
+
     this.commentForm = this.formBuilder.group({
       content: ['', [Validators.required]],
       commentedBy: ['', [Validators.required]],
-      userId: ['', [Validators.required]],
-      postId: ['', [Validators.required]]
+      userId: ['', [Validators.required]]
       });
 
   }
@@ -34,7 +42,7 @@ export class CreateCommentComponent implements OnInit {
 
 
   goToList() {
-    this.router.navigate(['/']);
+    window.location.reload();
   }
 
   onSubmit() {
@@ -42,16 +50,15 @@ export class CreateCommentComponent implements OnInit {
     if (this.commentForm.invalid) {
       return;
     }
-    console.log(this.commentForm.value)
     this.newComment = {
-      description: this.commentForm.value.content,
+      content: this.commentForm.value.content,
       commentedBy: this.commentForm.value.commentedBy,
       commentedAt: '',
       user: {
         userId: this.commentForm.value.userId
       },
       post: {
-        postId: this.commentForm.value.postId
+        postId: this.postId
       }
     }
   

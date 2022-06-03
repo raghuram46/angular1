@@ -30,6 +30,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { CreateCommentComponent } from './components/create-comment/create-comment.component';
 import { UpdateCommentComponent } from './components/update-comment/update-comment.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { UpdateCommentComponent } from './components/update-comment/update-comme
     MatBadgeModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCardModule,
+    MatTabsModule
   ],
   providers: [UserService, AuthService],
   bootstrap: [AppComponent]

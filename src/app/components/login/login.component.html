@@ -9,7 +9,7 @@
                     <h1 class="login-heading text-center mb-4">{{title}}</h1>
     
                     <!-- Sign In Form -->
-                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <form [formGroup]="loginForm"  (ngSubmit)="onSubmit()">
                         <div class="form-group mb-3">
                             <label for="userName">Username</label>
                             <input type="text" class="form-control" id="userName" placeholder="Username" formControlName="userName" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }">

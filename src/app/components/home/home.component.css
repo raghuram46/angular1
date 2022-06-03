@@ -1,3 +1,29 @@
 .card{
     border-radius: 8px;
 }
+
+.user-card{
+    list-style-type: none;
+    padding: 32px;
+    border-radius: 200px;
+    border: 1px outset rgb(204, 152, 9);
+    font-size: 25px;
+    font-weight: bold;
+    margin: 5px;
+    height: 85px;
+    width: 85px;
+}
+
+.user-card-all{
+    list-style-type: none;
+    border-radius: 200px;
+    border: 1px outset rgb(204, 152, 9);
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px;
+    height: 85px;
+    width: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

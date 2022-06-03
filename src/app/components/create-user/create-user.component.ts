@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -20,9 +21,16 @@ export class CreateUserComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router) { }
+    private router: Router,
+    private cookies: CookieService) { }
 
   ngOnInit(): void {
+
+    const jwtToken = this.cookies.get('jwt_token');
+      if(!jwtToken){
+        this.router.navigateByUrl('/login')
+      }
+      
     this.registerForm = this.formBuilder.group({
       userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
