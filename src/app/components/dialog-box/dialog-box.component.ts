@@ -47,8 +47,9 @@ export class DialogBoxComponent implements OnInit {
   onDelete(commentId: number){
     this.commentService.deleteCommentById(commentId).subscribe(data => {
       console.log(data)
-      this.router.navigateByUrl('/')
     })
+
+    window.location.reload();
   }
 
 }

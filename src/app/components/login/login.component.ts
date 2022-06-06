@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -30,13 +31,15 @@ export class LoginComponent implements OnInit {
      private authService: AuthService,
      private cookies: CookieService,
       private router: Router
-      ) { }
+      ) { 
+      }
 
   //Add user form actions
   get f() { return this.loginForm.controls; }
 
   ngOnInit() {
     const jwtToken = this.cookies.get('jwt_token');
+
     if(jwtToken){
       this.router.navigateByUrl('/');
     }
@@ -51,7 +54,6 @@ export class LoginComponent implements OnInit {
     })
 
   }
-
 
   onSubmit(){
   this.submitted = true;
@@ -69,7 +71,10 @@ export class LoginComponent implements OnInit {
           const parsedData = JSON.parse(data);
           this.cookies.set('jwt_token', parsedData.JWT, {expires: 30})
         })
-        this.router.navigateByUrl('/');
+
+        localStorage.setItem('currentUser', JSON.stringify(this.registeredUser))
+
+        window.location.reload();
 
       }else{
         alert("Password didn't match");

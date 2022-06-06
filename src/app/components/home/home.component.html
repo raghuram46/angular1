@@ -1,10 +1,10 @@
 <div class="container-fluid px-auto">
     <div class="row pl-2">
-        <div class="col-12 d-flex">
-            <p class="user-card-all mt-3">All posts</p>
+        <div class="col-12 d-flex" [ngStyle]="{'background-color': '#7be3e1'}">
+            <p class="user-card-all mt-3" [ngStyle]="{'background-color': 'white'}" (click)="onClickAll()">All posts</p>
             <ul class="d-flex mt-2 pl-0 mb-0">
-                <li class="user-card" *ngFor="let user of users">
-                    {{user.userName.split("")[0] | uppercase}}
+                <li *ngFor="let user of users" [ngStyle]="{'background-color': 'white'}" (click)="onClickUser(user.posts)" class="user-card" >
+                    <p class="">{{user.userName.split("")[0] | uppercase}}</p>
                 </li>
             </ul>
         </div>

@@ -35,9 +35,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-            <a class="nav-link options" routerLink="/users">Users</a>
-            <a class="nav-link options" (click)="onLogout()">Logout</a>
-            <!-- <button class="button">Sign Up</button> -->
+            <a *ngIf="showLogout" class="nav-link options" routerLink="/users">Users</a>
+            <a *ngIf="showRegister" class="nav-link options" routerLink="/register">Register</a>
+            <a *ngIf="showLogin" class="nav-link options" routerLink="/login">Login</a>
+            <a *ngIf="showLogout" class="nav-link options" (click)="onLogout()">Logout</a>
         </div>
     </div>
 </nav>

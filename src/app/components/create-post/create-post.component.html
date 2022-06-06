@@ -23,11 +23,12 @@
                     <div *ngIf="f.userId.errors.required">UserId is required</div>
                 </div>
             </div>
-            <div class="form-group text-center">
-                <button [disabled]="loading" class="btn btn-primary mt-2" type="submit">
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary mt-2 mr-2" type="submit">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Add
                 </button>
+                <a routerLink="/" class="mt-5" [ngStyle]="{'color': 'blue', 'text-decoration': 'none' }">Cancel</a>
             </div>
         </form>
     </div>

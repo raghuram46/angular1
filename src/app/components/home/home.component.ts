@@ -6,6 +6,7 @@ import { first } from 'rxjs';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-home',
@@ -23,21 +24,42 @@ export class HomeComponent implements OnInit {
      public dialog: MatDialog) {
 
       const jwtToken = this.cookies.get('jwt_token');
+      // const tokenInfo =  this.getDecodedAccessToken(jwtToken);
+      // console.log(tokenInfo.userName)
       if(!jwtToken){
         this.router.navigateByUrl('/login')
       }
+
   }
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe(data => {
       this.users = data;
-      console.log(data)
+      //console.log(data)
     })
 
     this.postService.getAllPosts().subscribe(data => {
       this.posts = data;
       console.log(data)
     })
+
+  }
+
+  // getDecodedAccessToken(token: string): any {
+  //   try {
+  //     return jwt_decode(token);
+  //   } catch(Error) {
+  //     return null;
+  //   }
+  // }
+
+  onClickAll(){
+    this.ngOnInit();
+  }
+
+  onClickUser(userPosts: any){
+    console.log(userPosts)
+    this.posts = userPosts;
   }
 
   openDialog(comments: any, postId: number) {
