@@ -2,11 +2,15 @@
     <p *ngIf="comments.length===0">No Comments</p>
     <ul class="dialog-box-list">
         <li *ngFor="let comment of comments">
-            <div class="d-flex flex-row justify-content-between ">
+            <div class="d-flex flex-row justify-content-between mt-2">
                 <p class="mt-2 ml-0" [ngStyle]="{'font-size': '16px'}">{{comment.content}}</p>
-                <button class="bg-transparent mr-3" mat-icon-button aria-label="icon button with a delete and edit icon">
-                    <mat-icon (click)="openDialog(comment.commentId)" color="primary">edit</mat-icon>
-                    <mat-icon (click)="onDelete(comment.commentId)" color="warn" class="pl-3">delete</mat-icon>
+                <button class="bg-transparent mr-5" mat-icon-button aria-label="icon button with a delete and edit icon">
+                    <button *ngIf="(this.currentUser.userName === this.currentPost.postedBy) || (this.currentUser.userName === comment.commentedBy)" class="button">
+                        <mat-icon (click)="openDialog(comment.commentId)" color="primary">edit</mat-icon>
+                    </button>
+                    <button *ngIf="(this.currentUser.userName === this.currentPost.postedBy) || (this.currentUser.userName === comment.commentedBy)" class="button">
+                        <mat-icon (click)="onDelete(comment)" color="warn" class="pl-3">delete</mat-icon>
+                    </button>
                 </button>
             </div>
             <div class="d-flex flex-row justify-content-between">

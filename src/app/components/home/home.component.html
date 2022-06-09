@@ -23,11 +23,11 @@
                     <p class="ml-2">{{post.description}}</p>
                     <div class="d-flex flex-row justify-content-between mt-3">
                         <div class="d-flex">
-                            <button (click)="openDialog(post.comments, post.postId)" mat-dialog-title mat-icon-button color="secondary" aria-label="icon button with a delete icon">
+                            <button (click)="openDialog(post.comments, post)" mat-dialog-title mat-icon-button color="secondary" aria-label="icon button with a delete icon">
                                 <mat-icon [ngStyle]="{'font-size': '30px'}"  matBadge="{{post.comments.length}}" matBadgeColor="warn">comment</mat-icon>
                             </button>
                         </div>
-                        <button (click)="onDelete(post.postId)"  mat-icon-button color="secondary" aria-label="icon button with a delete icon">
+                        <button (click)="onDelete(post.postId)" [disabled]="currentUser.userName!==post.postedBy"  mat-icon-button color="secondary" aria-label="icon button with a delete icon">
                             <mat-icon [ngStyle]="{'font-size': '25px'}">delete</mat-icon>
                         </button>
                     </div>  

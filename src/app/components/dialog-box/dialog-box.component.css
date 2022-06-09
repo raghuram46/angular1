@@ -7,3 +7,10 @@
     list-style-type: none;
     padding: 0;
 }
+
+.button{
+    border: none;
+    outline: none;
+    background: none;
+    margin: none;
+}

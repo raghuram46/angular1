@@ -18,6 +18,7 @@ import { CreatePostComponent } from '../create-post/create-post.component';
 export class HomeComponent implements OnInit{
   posts: any;
   users: any;
+  currentUser: any;
   activeLink: any;
   allPostsTab: boolean = false;
 
@@ -37,6 +38,9 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    const user: any = localStorage.getItem('currentUser')
+    this.currentUser = JSON.parse(user)
+
     this.userService.getAllUsers().subscribe(data => {
       this.users = data;
       //console.log(data)
@@ -44,7 +48,7 @@ export class HomeComponent implements OnInit{
 
     this.postService.getAllPosts().subscribe(data => {
       this.posts = data;
-      //console.log(data)
+      console.log(data)
     })
   }
 
@@ -67,11 +71,11 @@ export class HomeComponent implements OnInit{
     this.allPostsTab = true;
   }
 
-  openDialog(comments: any, postId: number) {
+  openDialog(comments: any, post: any) {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       data: {
         commentsList: comments,
-        postId: postId
+        post: post
       }
     });
 
@@ -89,6 +93,7 @@ export class HomeComponent implements OnInit{
   }
 
   onDelete(postId: number){
+    
     this.postService.deletePostById(postId).pipe(first()).subscribe(data => {
       this.posts = data;
       window.location.reload()
