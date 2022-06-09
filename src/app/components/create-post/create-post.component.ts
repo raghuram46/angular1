@@ -15,6 +15,7 @@ export class CreatePostComponent implements OnInit {
   loading = false;
   submitted = false;
   newPost: any;
+  currentUser: any;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -23,15 +24,9 @@ export class CreatePostComponent implements OnInit {
     private cookies: CookieService) { }
 
   ngOnInit(): void {
-    const jwtToken = this.cookies.get('jwt_token');
-      if(!jwtToken){
-        this.router.navigateByUrl('/login')
-      }
-      
+    
     this.postForm = this.formBuilder.group({
-      description: ['', [Validators.required]],
-      postedBy: ['', [Validators.required]],
-      userId: ['', [Validators.required]]
+      description: ['', [Validators.required]]
       });
 
   }
@@ -40,7 +35,7 @@ export class CreatePostComponent implements OnInit {
 
 
   goToList() {
-    this.router.navigate(['/']);
+    window.location.reload();
   }
 
   onSubmit() {
@@ -49,13 +44,14 @@ export class CreatePostComponent implements OnInit {
       return;
     }
 
+    this.currentUser = localStorage.getItem('currentUser')
+    const parsedData = JSON.parse(this.currentUser)
     this.newPost = {
       description: this.postForm.value.description,
-      postedBy: this.postForm.value.postedBy,
+      postedBy: parsedData.userName,
       postedAt: '',
-      //postedAt: this.postForm.value.postedAt,
       user: {
-        userId: this.postForm.value.userId
+        userId: parsedData.userId
       }
     }
   

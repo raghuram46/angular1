@@ -7,15 +7,19 @@ import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import jwt_decode from 'jwt-decode';
+import { ThemePalette } from '@angular/material/core';
+import { CreatePostComponent } from '../create-post/create-post.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit{
   posts: any;
   users: any;
+  activeLink: any;
+  allPostsTab: boolean = false;
 
   constructor(private cookies: CookieService,
      private router: Router,
@@ -40,9 +44,8 @@ export class HomeComponent implements OnInit {
 
     this.postService.getAllPosts().subscribe(data => {
       this.posts = data;
-      console.log(data)
+      //console.log(data)
     })
-
   }
 
   // getDecodedAccessToken(token: string): any {
@@ -55,11 +58,13 @@ export class HomeComponent implements OnInit {
 
   onClickAll(){
     this.ngOnInit();
+    this.allPostsTab = false;
   }
 
   onClickUser(userPosts: any){
-    console.log(userPosts)
+    //console.log(userPosts)
     this.posts = userPosts;
+    this.allPostsTab = true;
   }
 
   openDialog(comments: any, postId: number) {
@@ -75,9 +80,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  openPostDialog(){
+    const dialogRef = this.dialog.open(CreatePostComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("Post dialog box closed")
+    });
+  }
+
   onDelete(postId: number){
     this.postService.deletePostById(postId).pipe(first()).subscribe(data => {
       this.posts = data;
+      window.location.reload()
     },
     error => console.log(error)
     );

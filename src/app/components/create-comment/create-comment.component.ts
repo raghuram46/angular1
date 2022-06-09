@@ -16,6 +16,7 @@ export class CreateCommentComponent implements OnInit {
   loading = false;
   submitted = false;
   newComment: any;
+  currentUser: any;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -31,9 +32,7 @@ export class CreateCommentComponent implements OnInit {
       }
 
     this.commentForm = this.formBuilder.group({
-      content: ['', [Validators.required]],
-      commentedBy: ['', [Validators.required]],
-      userId: ['', [Validators.required]]
+      content: ['', [Validators.required]]
       });
 
   }
@@ -50,27 +49,31 @@ export class CreateCommentComponent implements OnInit {
     if (this.commentForm.invalid) {
       return;
     }
+
+    this.currentUser = localStorage.getItem('currentUser')
+    const parsedData = JSON.parse(this.currentUser)
+
     this.newComment = {
       content: this.commentForm.value.content,
-      commentedBy: this.commentForm.value.commentedBy,
+      commentedBy: parsedData.userName,
       commentedAt: '',
       user: {
-        userId: this.commentForm.value.userId
+        userId: parsedData.userId
       },
       post: {
         postId: this.postId
       }
     }
-  
-  this.loading = true;
-  this.commentService.createComment(this.newComment).subscribe(data => {
-    console.log(data);
-    this.loading = false; 
-    alert("Commented successfully");
-    this.goToList();
-   }),
-   (error: any) => console.log(error),
-   () => console.log("Request Completed");
 
-}
+    this.loading = true;
+    this.commentService.createComment(this.newComment).subscribe(data => {
+      console.log(data);
+      this.loading = false; 
+      alert("Commented successfully");
+      this.goToList();
+    }),
+    (error: any) => console.log(error),
+    () => console.log("Request Completed");
+
+  }
 }

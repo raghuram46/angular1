@@ -32,6 +32,8 @@ import { CreateCommentComponent } from './components/create-comment/create-comme
 import { UpdateCommentComponent } from './components/update-comment/update-comment.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatDialogModule,
     MatSidenavModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatMenuModule,
+    MatNativeDateModule
   ],
   providers: [UserService, AuthService],
   bootstrap: [AppComponent]

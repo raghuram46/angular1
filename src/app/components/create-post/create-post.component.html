@@ -1,36 +1,17 @@
-<div class="add-container py-5">
-    <div class="card-body my-5">
-        <h1 class="text-center fw-500">New Post</h1>
-        <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="description" [ngStyle]="{'font-size': '20px', 'font-weight': '400' }">Description</label>
-                <textarea rows="3" cols="50" id="description" placeholder="description" formControlName="description" class="form-control mb-1" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
-                <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-                    <div *ngIf="f.description.errors.required">Message required</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="postedBy" [ngStyle]="{'font-size': '20px', 'font-weight': '400' }">Posted By</label>
-                <input type="text" id="postedBy" placeholder="postedBy" formControlName="postedBy" class="form-control mb-1" [ngClass]="{ 'is-invalid': submitted && f.postedBy.errors }" />
-                <div *ngIf="submitted && f.postedBy.errors" class="invalid-feedback">
-                    <div *ngIf="f.postedBy.errors.required">Required</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="userId" [ngStyle]="{'font-size': '20px', 'font-weight': '400' }">User Id</label>
-                <input type="number" class="form-control mb-1" id="userId" placeholder="userId" formControlName="userId" [ngClass]="{ 'is-invalid': submitted && f.userId.errors }">
-                <div *ngIf="submitted && f.userId.errors" class="invalid-feedback">
-                    <div *ngIf="f.userId.errors.required">UserId is required</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <button [disabled]="loading" class="btn btn-primary mt-2 mr-2" type="submit">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Add
-                </button>
-                <a routerLink="/" class="mt-5" [ngStyle]="{'color': 'blue', 'text-decoration': 'none' }">Cancel</a>
-            </div>
-        </form>
+<h1 class="text-center fw-500">New Post</h1>
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="description" [ngStyle]="{'font-size': '20px'}">Description</label>
+        <textarea rows="3" cols="50" id="description" placeholder="description" formControlName="description" class="form-control mb-1" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">Message required</div>
+        </div>
     </div>
-    
-</div>
+    <div class="form-group d-flex justify-content-end align-items-center">
+        <a mat-dialog-close [ngStyle]="{'color': 'blue', 'text-decoration': 'none' }">Cancel</a>
+        <button [disabled]="loading" class="btn btn-primary ml-2" type="submit">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Post
+        </button>
+    </div>
+</form>

@@ -1,13 +1,16 @@
 <div class="container-fluid px-auto">
     <div class="row pl-2">
-        <div class="col-12 d-flex" [ngStyle]="{'background-color': '#7be3e1'}">
-            <p class="user-card-all mt-3" [ngStyle]="{'background-color': 'white'}" (click)="onClickAll()">All posts</p>
-            <ul class="d-flex mt-2 pl-0 mb-0">
-                <li *ngFor="let user of users" [ngStyle]="{'background-color': 'white'}" (click)="onClickUser(user.posts)" class="user-card" >
-                    <p class="">{{user.userName.split("")[0] | uppercase}}</p>
-                </li>
-            </ul>
-        </div>
+        <nav mat-tab-nav-bar [ngStyle]="{'background-color': 'white'}" [tabPanel]="tabPanel">
+            <a class="p-5 " mat-tab-link [active]="!allPostsTab" (click)="onClickAll()">
+                <p class="user-card">All</p>
+            </a>
+            <a class="p-5" mat-tab-link *ngFor="let user of users"
+               (click)="activeLink = user" (click)="onClickUser(user.posts)"
+               [active]="activeLink == user">
+               <p class="user-card ">{{user.userName.split(" ")[0]}}</p>
+            </a>
+        </nav>
+        <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
     </div>
     <div class="row">
         <div class="col-10 pl-4">
@@ -32,7 +35,7 @@
             </ul>
         </div>
         <div class="col-2">
-            <button routerLink="/createPost" class="btn btn-success mt-3 ml-3 mr-0">Create New Post</button>
+            <button (click)="openPostDialog()" class="btn btn-success mt-3 ml-3 mr-0">Create New Post</button>
         </div>
     </div>
 </div>

@@ -1,2 +1,44 @@
-<p>user-details works!</p>
-<h1>User Details</h1>
+<div class="container">
+    <div class="card">
+        <div class="overlay d-none"> 
+            <small class="fa fa-close"></small>
+            <img src="https://imgur.com/SSCE2Uj.jpg"> 
+        </div>
+        <div class="upperborder">
+        </div>
+        <div class="image">
+            <span><img id="userimage" src="https://imgur.com/SSCE2Uj.jpg"></span>
+        </div>
+        <div class="text mb-2">
+            <div class="d-flex align-items-center">
+                <h2 class="m-0" [ngStyle]="{'color': '#c171e3'}">{{currentUser.userName}}</h2>
+                <!-- <h1 class="mx-2" [ngStyle]="{'font-size': '24px' }">{{"|"}}</h1> -->
+                <h4 class="m-0 pt-1" [ngStyle]="{'color': '#3f7fe0'}">, {{currentUser.age}}</h4>
+            </div>
+            <span>{{currentUser.email}}</span>
+        </div>
+        <div class="d-flex justify-content-center">
+            <!-- <div class="d-flex flex-column m-2 mx-4">
+              <span class="heading ml-3">22</span>
+              <span class="description">Friends</span>
+            </div> -->
+            <div class="d-flex flex-column m-2 mx-4">
+              <h3 class="text-center m-0" [ngStyle]="{'color': '#0badde', 'font-weight': 'bold' }">{{currentUser.posts.length}}</h3>
+              <span>Posts</span>
+            </div>
+            <div class="d-flex flex-column m-2 mx-4">
+              <h3 class="text-center m-0" [ngStyle]="{'color': '#0badde','font-weight': 'bold' }">{{currentUser.comments.length}}</h3>
+              <span>Comments</span>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="social">
+                <i class="fa fa-facebook-f"></i>
+                <i class="fa fa-envelope-o"></i>
+                <i class="fa fa-linkedin"></i>
+                <i class="fa fa-dribbble"></i>
+            </div>
+        </div>
+    </div>
+    
+</div>
