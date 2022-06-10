@@ -11,6 +11,9 @@ export class HeadersComponent implements OnInit {
   showLogin: any;
   showLogout: any;
   showRegister:  any;
+  currentUser: any;
+  admin: boolean = false;
+  displayHeaders: boolean = true;
 
   constructor(private router: Router, private cookies: CookieService) {
     router.events.subscribe((event: Event) => {
@@ -21,14 +24,19 @@ export class HeadersComponent implements OnInit {
           this.showLogin = false;
           this.showLogout = false;
           this.showRegister = true;
+          this.displayHeaders = true;
         }else if(event.url === "/register"){
           this.showLogin = true;
           this.showLogout = false;
           this.showRegister = false;
-        }else{
+          this.displayHeaders = true;
+        }else if(event.url === "/home" || event.url === "/userDetails"){
           this.showLogin = false;
           this.showLogout = true;
           this.showRegister = false;
+          this.displayHeaders = true;
+        }else{
+          this.displayHeaders = false;
         }
       }
     });
@@ -36,6 +44,12 @@ export class HeadersComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    const user: any = localStorage.getItem('currentUser')
+    this.currentUser = JSON.parse(user)
+
+    if(this.currentUser.userName === "Raghu"){
+      this.admin = true;
+    }
   }
 
   onLogout(){

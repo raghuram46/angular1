@@ -24,7 +24,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog';
-import { CommentsListComponent } from './components/comments-list/comments-list.component';
 import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { CreatePostComponent } from './components/create-post/create-post.component';
@@ -47,7 +46,6 @@ import {MatNativeDateModule} from '@angular/material/core';
     HeadersComponent,
     RegisterComponent,
     NotFoundComponent,
-    CommentsListComponent,
     DialogBoxComponent,
     CreatePostComponent,
     CreateCommentComponent,

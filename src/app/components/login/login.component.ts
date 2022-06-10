@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   loginForm: any = FormGroup;
   users: any;
   registeredUser: any;
+  showPassword: boolean = false;
 
   // userForm = new FormGroup({
   //   userName: new FormControl(),
@@ -34,7 +35,6 @@ export class LoginComponent implements OnInit {
       ) { 
       }
 
-  //Add user form actions
   get f() { return this.loginForm.controls; }
 
   ngOnInit() {
@@ -46,7 +46,8 @@ export class LoginComponent implements OnInit {
 
     this.loginForm = this.formBuilder.group({
     userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
-    password: ['', [Validators.required, Validators.minLength(8)]]
+    password: ['', [Validators.required, Validators.minLength(8)]],
+    rememberMe: [false]
     });
 
     this.userService.getAllUsers().subscribe(data => {
@@ -55,14 +56,18 @@ export class LoginComponent implements OnInit {
 
   }
 
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
+
   onSubmit(){
   this.submitted = true;
   if (this.loginForm.invalid) {
       return;
   }
-  
+
   this.registeredUser = this.users.find((user: { userName: any; }) => user.userName === this.loginForm.value.userName)
-  console.log(this.registeredUser)
+
   if(this.registeredUser!== undefined ){
       if(this.registeredUser.password === this.loginForm.value.password)
       {
