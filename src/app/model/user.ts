@@ -4,6 +4,8 @@ export class User {
     password: String = '';
     email: String = '';
     age: number = 0;
+    gender: any;
+    profilePicUrl: String = '';
     posts: any;
     comments: any
 }

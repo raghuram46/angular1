@@ -5,11 +5,7 @@
 }
 
 .users-head{
-    font-size: 28px;
+    font-size: 26px;
     font-weight: bold;
-    color: rgb(35, 35, 37);
-}
-
-.add-user{
-    height: 40px;
+    color: rgb(80, 25, 28);
 }

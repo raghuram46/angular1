@@ -1,25 +1,27 @@
-<div class="m-2 d-flex justify-content-between">
-    <h1 class="ml-2 users-head">Users</h1>
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="ml-2 mt-2 users-head">Users</h1>
     <a routerLink="/createUser" class="btn btn-success add-user mr-3">Add User</a>
 </div>
 <table class="table table-striped">
-    <thead>
+    <thead [ngStyle]="{'background-color': 'gray', 'font-size': '16px', 'height': '50px'}">
         <tr>
-            <th style="width: 15%">User Id</th>
-            <th style="width: 20%">USERNAME</th>
-            <th style="width: 25%">Email Address</th>
-            <th style="width: 25%">Age</th>
-            <th style="width: 25%"></th>
+            <th style="width: 10%">User Id</th>
+            <th style="width: 15%">User Name</th>
+            <th style="width: 20%">Email Address</th>
+            <th style="width: 15%">Gender</th>
+            <th style="width: 10%">Age</th>
+            <th style="width: 15%"></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody >
         <tr *ngFor="let user of users">
-            <td class="pl-4">{{user.userId}}</td>
+            <td class="pl-3">{{user.userId}}</td>
             <td>{{user.userName}}</td>
             <td>{{user.email}}</td>
+            <td>{{user.gender}}</td>
             <td class="pl-3">{{user.age}}</td>
-            <td style="white-space: nowrap">
-                <a (click)="update(user.userId)" class="btn btn-sm btn-primary mr-2">Edit</a>
+            <td class="pl-0" style="white-space: nowrap">
+                <a (click)="update(user)" class="btn btn-sm btn-primary mr-3">Edit</a>
                 <button class="btn btn-sm btn-danger btn-delete-user" (click)="deleteUser(user.userId)" [disabled]="user.isDeleting">
                     <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
                     <span *ngIf="!user.isDeleting">Delete</span>

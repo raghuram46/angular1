@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { first } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
+import { UpdateUserComponent } from '../update-user/update-user.component';
 
 @Component({
   selector: 'app-user-list',
@@ -15,6 +17,7 @@ export class UserListComponent implements OnInit {
   users: any;
   constructor(private userService: UserService,
             private cookies: CookieService,
+            public dialog: MatDialog,
             private router: Router) { }
 
   ngOnInit(): void {
@@ -36,8 +39,15 @@ export class UserListComponent implements OnInit {
     );
   }
 
-  update(userId: number){
-    this.router.navigate(['/users/updateUser', userId])
+  update(user: any){
+    const dialogRef = this.dialog.open(UpdateUserComponent, {
+      data: user,
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("Update dialog box closed")
+    });
   }
 
 }

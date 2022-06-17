@@ -35,7 +35,9 @@ export class CreateUserComponent implements OnInit {
       userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       email: ['', [Validators.required, Validators.email]],
-      age: ['', [Validators.required, Validators.min(18), Validators.max(100)]]
+      age: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
+      gender: ['0', [Validators.required]],
+      profilePicUrl: ['']
       });
 
       this.userService.getAllUsers().subscribe(data => {

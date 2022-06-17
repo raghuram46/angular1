@@ -30,7 +30,7 @@ export class HeadersComponent implements OnInit {
           this.showLogout = false;
           this.showRegister = false;
           this.displayHeaders = true;
-        }else if(event.url === "/home" || event.url === "/userDetails"){
+        }else if(event.url === "/home" || event.url === "/userDetails" || event.url === "/users" || event.url === "/createUser"){
           this.showLogin = false;
           this.showLogout = true;
           this.showRegister = false;

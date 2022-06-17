@@ -41,13 +41,12 @@ export class LoginComponent implements OnInit {
     const jwtToken = this.cookies.get('jwt_token');
 
     if(jwtToken){
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/home');
     }
 
     this.loginForm = this.formBuilder.group({
     userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
-    rememberMe: [false]
+    password: ['', [Validators.required, Validators.minLength(8)]]
     });
 
     this.userService.getAllUsers().subscribe(data => {

@@ -7,12 +7,11 @@
         <div class="upperborder">
         </div>
         <div class="image">
-            <span><img id="userimage" src="https://imgur.com/SSCE2Uj.jpg"></span>
+            <span><img id="userimage" src="https://imgur.com/SSCE2Uj.jpg" alt="profile pic"></span>
         </div>
         <div class="text mb-2">
             <div class="d-flex align-items-center">
                 <h2 class="m-0" [ngStyle]="{'color': '#c171e3'}">{{currentUser.userName}}</h2>
-                <!-- <h1 class="mx-2" [ngStyle]="{'font-size': '24px' }">{{"|"}}</h1> -->
                 <h4 class="m-0 pt-1" [ngStyle]="{'color': '#3f7fe0'}">, {{currentUser.age}}</h4>
             </div>
             <span>{{currentUser.email}}</span>
@@ -26,6 +25,10 @@
               <h3 class="text-center m-0" [ngStyle]="{'color': '#0badde', 'font-weight': 'bold' }">{{currentUser.posts.length}}</h3>
               <span>Posts</span>
             </div>
+            <div class="d-flex flex-column m-2 mx-4">
+                <h3 class="text-center m-0" [ngStyle]="{'color': '#0badde','font-weight': 'bold' }">{{currentUser.likes.length}}</h3>
+                <span>Likes</span>
+              </div>
             <div class="d-flex flex-column m-2 mx-4">
               <h3 class="text-center m-0" [ngStyle]="{'color': '#0badde','font-weight': 'bold' }">{{currentUser.comments.length}}</h3>
               <span>Comments</span>

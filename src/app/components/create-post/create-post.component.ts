@@ -55,15 +55,15 @@ export class CreatePostComponent implements OnInit {
       }
     }
   
-  this.loading = true;
-  this.postService.createPost(this.newPost).subscribe(data => {
-    console.log(data);
-    this.loading = false; 
-    alert("Posted successfully");
-    this.goToList();
-   }),
-   (error: any) => console.log(error),
-   () => console.log("Request Completed");
+    this.loading = true;
+    this.postService.createPost(this.newPost).subscribe(data => {
+      console.log(data);
+      this.loading = false; 
+      alert("Posted successfully");
+      this.goToList();
+    }),
+    (error: any) => console.log(error),
+    () => console.log("Request Completed");
 
 }
 

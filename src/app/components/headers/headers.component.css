@@ -7,27 +7,18 @@ body {
     margin: 0px;
 }
 
-.top {
-    background-image: linear-gradient(to right, #f54f5a, #f58529, #f64f59, #d267c4, #00ffff);
-}
-
-@media screen and (min-width:768px) {
-    .top {
-        background-image: linear-gradient(to bottom, #f54f5a, #f58529, #f64f59, #d267c4, #00ffff);
-    }
-}
-
 .logo {
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
+    background: transparent;
 }
 
-.insta {
+/* .insta {
     color: white;
     padding-left: 5px;
     font-weight: bold;
     font-size: 20px;
-}
+} */
 
 .navbar-right {
     display: flex;
