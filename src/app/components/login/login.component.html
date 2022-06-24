@@ -21,7 +21,7 @@
                         <div class="form-group mb-3">
                             <label for="password">Password</label>
                             <div class="input-group">
-                                <input type="{{(showPassword === false)?'password':'text'}}" class="form-control" id="password" placeholder="Password" formControlName="password"[ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                <input type="{{(showPassword === false)?'password':'text'}}" class="form-control" id="password" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                     <i
@@ -35,10 +35,10 @@
                                     ></i>
                                     </span>
                                 </div>
-                            </div>
-                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                <div *ngIf="f.password.errors.required">Password is required</div>
-                                <div *ngIf="f.password.errors?.['minlength']">Password must be atleast 8 characters</div>
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors?.['minlength']">Password must be atleast 8 characters</div>
+                                </div>
                             </div>
                         </div>
                         <!-- <div class="form-check mb-3">

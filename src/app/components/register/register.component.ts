@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   users: any;
   newUser: any;
+  showPassword: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,7 +48,9 @@ export class RegisterComponent implements OnInit {
       
   }
 
-
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
 
   onSubmit(){
     this.submitted = true;

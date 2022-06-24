@@ -19,12 +19,10 @@ import { LikesService } from 'src/app/services/likes.service';
 export class HomeComponent implements OnInit{
   posts: any;
   users: any;
-  AllLikes: any;
   currentUser: any;
   activeLink: any;
   allPostsTab: boolean = false;
-  isLiked: boolean = false;
-  likeButtonColor: string = "secondary";
+  isLiked: any;
   newLike: any;
 
   constructor(private cookies: CookieService,
@@ -49,24 +47,20 @@ export class HomeComponent implements OnInit{
 
     this.userService.getAllUsers().subscribe(data => {
       this.users = data;
-      //console.log(data)
     })
 
     this.postService.getAllPosts().subscribe(data => {
-      this.posts = data;
-      console.log(data)
-    })
-
-    this.likesService.getAllLikes().subscribe(data =>{
       if(data !== null){
-        data.forEach((likeObj: any) => {
-          if(likeObj.likedBy === this.currentUser.userName){
-            this.isLiked = true
-            this.likeButtonColor = "primary";
-          }
+        this.posts = data.map((post: any) => {
+          let newPost: any;
+          this.isLiked = post.likes.some((likeObj: any) => likeObj.likedBy === this.currentUser.userName);
+          newPost = {...post, isLiked: this.isLiked}
+          return newPost;
         })
       }
+      console.log(this.posts)
     })
+
   }
 
   // getDecodedAccessToken(token: string): any {
@@ -78,8 +72,6 @@ export class HomeComponent implements OnInit{
   // }
 
   onClickLike(post: any){
-    this.isLiked = !this.isLiked;
-    this.likeButtonColor = this.isLiked ? "primary" : "scondary";
     this.newLike = {
       likedBy: this.currentUser.userName,
       user : {
@@ -89,9 +81,9 @@ export class HomeComponent implements OnInit{
         postId: post.postId
       }
     }
-    if(this.isLiked){
+    if(!post.isLiked){
       this.likesService.createLikes(this.newLike).subscribe(data => {
-        window.location.reload();
+        this.ngOnInit();
       })
     }else{
       let currentLikeId : any;
@@ -100,7 +92,7 @@ export class HomeComponent implements OnInit{
           if(element.likedBy === this.currentUser.userName){
             currentLikeId = element.likeId;
             this.likesService.deleteLikeById(currentLikeId).subscribe(data => {
-              window.location.reload();
+              this.ngOnInit();
             })
           }
         });

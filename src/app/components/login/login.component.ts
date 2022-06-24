@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
   if (this.loginForm.invalid) {
       return;
   }
+  console.log(this.loginForm.value)
 
   this.registeredUser = this.users.find((user: { userName: any; }) => user.userName === this.loginForm.value.userName)
 
