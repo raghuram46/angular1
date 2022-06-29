@@ -33,6 +33,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatCardModule,
     MatTabsModule,
     MatMenuModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatListModule
   ],
   providers: [UserService, AuthService],
   bootstrap: [AppComponent]

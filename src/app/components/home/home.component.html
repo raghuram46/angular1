@@ -22,9 +22,19 @@
                     </div>
                     <p class="ml-2">{{post.description}}</p>
                     <div class="d-flex flex-row justify-content-between mt-3">
-                        <button (click)="onClickLike(post)" color="{{(post.isLiked)?'primary':'secondary'}}" mat-dialog-title mat-icon-button aria-label="icon button with a like icon">
-                            <mat-icon [ngStyle]="{'font-size': '30px'}" matBadgeOverlap="false" matBadge="{{post.likes.length}}" matBadgeColor="primary">thumb_up</mat-icon>
-                        </button>
+                        <div class="d-flex align-center">
+                            <button (click)="onClickLike(post)" color="{{(post.isLiked)?'primary':'secondary'}}" mat-dialog-title mat-icon-button aria-label="icon button with a like icon">
+                                <mat-icon [ngStyle]="{'font-size': '30px'}" matBadgeOverlap="false" matBadge="{{post.likes.length}}" matBadgeColor="primary">thumb_up</mat-icon>
+                            </button>
+                            <button class="likes" mat-button [matMenuTriggerFor]="menu" #menuTrigger>Likes</button>
+                            <mat-menu #menu="matMenu">
+                                <mat-list>
+                                    <mat-list-item *ngFor="let like of post.likes">
+                                        <p>{{like.likedBy}}</p>
+                                    </mat-list-item>
+                                </mat-list>
+                            </mat-menu>
+                        </div>
                         <button (click)="openDialog(post.comments, post)" mat-dialog-title mat-icon-button color="secondary" aria-label="icon button with a delete icon">
                             <mat-icon [ngStyle]="{'font-size': '30px'}"  matBadge="{{post.comments.length}}" matBadgeColor="warn">comment</mat-icon>
                         </button>

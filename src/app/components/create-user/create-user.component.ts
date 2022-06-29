@@ -17,6 +17,7 @@ export class CreateUserComponent implements OnInit {
   users: any;
   newUser: any;
   user: User = new User();
+  showPassword: boolean = false;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -46,6 +47,10 @@ export class CreateUserComponent implements OnInit {
   }
 
   get f() { return this.registerForm.controls; }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
 
 
   goToList() {

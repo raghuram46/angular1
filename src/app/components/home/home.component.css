@@ -19,3 +19,8 @@
 
 
 ul li:hover {background: rgb(212, 230, 231);}
+
+.likes{
+    margin-left: 8px;
+    cursor: pointer;
+}

@@ -10,8 +10,8 @@
                             <div class="card-body">
                                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                                     <div class="form-group mb-0 mt-3">
-                                        <label for="userName" class="mb-0" [ngStyle]="{'color': 'white','font-size': '20px', 'font-weight': '500' }">Username</label>
-                                        <input type="text" id="userName" placeholder="Username" formControlName="userName" class="form-control mb-1" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                                        <label for="userName" class="mb-0" [ngStyle]="{'color': 'white','font-size': '18px', 'font-weight': '400' }">Username</label>
+                                        <input type="text" id="userName" placeholder="Username" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
                                         <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
                                             <div *ngIf="f.userName.errors.required">Username is required</div>
                                             <div *ngIf="f.userName.errors?.['minlength']">Username must be ateast 4 characters</div>
@@ -19,7 +19,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group mb-0 mt-3">
-                                        <label for="password" class="mb-0" [ngStyle]="{'color': 'white','font-size': '20px', 'font-weight': '500' }">Password</label>
+                                        <label for="password" class="mb-0" [ngStyle]="{'color': 'white','font-size': '18px', 'font-weight': '400' }">Password</label>
                                         <div class="input-group">
                                             <input type="{{(showPassword === false)?'password':'text'}}" class="form-control" id="password" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                                             <div class="input-group-append">
@@ -42,37 +42,40 @@
                                         </div>
                                     </div>
                                     <div class="form-group mb-0 mt-3">
-                                        <label for="email" class="mb-0" [ngStyle]="{'color': 'white','font-size': '20px', 'font-weight': '500' }">Email address</label>
-                                        <input type="email" class="form-control mb-1" id="email" placeholder="name@example.com" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                        <label for="email" class="mb-0" [ngStyle]="{'color': 'white','font-size': '18px', 'font-weight': '400' }">Email address</label>
+                                        <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                                         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                             <div *ngIf="f.email.errors.required">Email must be a valid email address</div>
                                         </div>
                                     </div>
                                     <div class="form-group mb-0 mt-3">
-                                        <label for="age" class="mb-0" [ngStyle]="{'color': 'white','font-size': '20px', 'font-weight': '500' }">Age</label>
-                                        <input type="number" class="form-control mb-1" id="age" placeholder="age" min="18"  max="99" formControlName="age"[ngClass]="{ 'is-invalid': submitted && f.age.errors }">
+                                        <label for="age" class="mb-0" [ngStyle]="{'color': 'white','font-size': '18px', 'font-weight': '400' }">Age</label>
+                                        <input type="number" class="form-control" id="age" placeholder="age" min="18"  max="99" formControlName="age"[ngClass]="{ 'is-invalid': submitted && f.age.errors }">
                                         <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
                                             <div *ngIf="f.age.errors.required">Age is required</div>
                                         </div>
                                     </div>
                                     <div class="form-group mb-0 mt-3">
-                                        <label for="gender" class="mb-0" [ngStyle]="{'color': 'white','font-size': '20px', 'font-weight': '500' }">Gender</label>
-                                        <select id="gender" class="form-control mb-1" formControlName="gender">
+                                        <label for="gender" class="mb-0" [ngStyle]="{'color': 'white','font-size': '18px', 'font-weight': '400' }">Gender</label>
+                                        <select id="gender" class="form-control" formControlName="gender">
                                             <option value=0>---select gender---</option>
                                             <option selected value="MALE">MALE</option>
                                             <option value="FEMALE">FEMALE</option>
                                         </select>
                                     </div>
                                     <div class="form-group mb-0 mt-3">
-                                        <label for="profilePicUrl" class="mb-0" [ngStyle]="{'color': 'white','font-size': '20px', 'font-weight': '500' }">ProfilePic Url</label>
-                                        <input type="text" class="form-control mb-1" id="profilePicUrl" placeholder="profilePicUrl" formControlName="profilePicUrl">
+                                        <label for="profilePicUrl" class="mb-0" [ngStyle]="{'color': 'white','font-size': '18px', 'font-weight': '400' }">ProfilePic Url</label>
+                                        <input type="text" class="form-control mb-3" id="profilePicUrl" placeholder="profilePicUrl" formControlName="profilePicUrl">
                                     </div>
-                                    <div class="form-group text-center d-flex">
-                                        <button [disabled]="loading" class="btn btn-primary mt-3" type="submit">
+                                    <div class="form-group d-flex justify-content-between align-center">
+                                        <button [disabled]="loading" class="btn btn-primary" type="submit">
                                             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                                             Register
                                         </button>
-                                        <a routerLink="../login"  class="btn btn-link mt-3" [ngStyle]="{'color': 'white', 'font-weight': '400', 'text-decoration': 'none' }">Cancel</a>
+                                        <div class="d-flex align-center">
+                                            <span class="mt-2" [ngStyle]="{'color': 'white', 'font-weight': '400', 'text-decoration': 'none' }">Already registered? </span>
+                                            <a routerLink="../login" class="btn btn-link text-decoration-none" [ngStyle]="{'color': '#eb7ab2', 'font-weight': '500', 'text-decoration': 'none' }">Login</a>
+                                        </div>                                
                                     </div>
                                 </form>
                             </div>
