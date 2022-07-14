@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -19,11 +19,13 @@ import { LikesService } from 'src/app/services/likes.service';
 export class HomeComponent implements OnInit{
   posts: any;
   users: any;
+  filteredUsers: any;
   currentUser: any;
   activeLink: any;
   allPostsTab: boolean = false;
   isLiked: any;
   newLike: any;
+  userSearch: string = '';
 
   constructor(private cookies: CookieService,
      private router: Router,
@@ -31,7 +33,6 @@ export class HomeComponent implements OnInit{
      private postService: PostService,
      private likesService: LikesService,
      public dialog: MatDialog) {
-
       const jwtToken = this.cookies.get('jwt_token');
       // const tokenInfo =  this.getDecodedAccessToken(jwtToken);
       // console.log(tokenInfo.userName)
@@ -47,6 +48,7 @@ export class HomeComponent implements OnInit{
 
     this.userService.getAllUsers().subscribe(data => {
       this.users = data;
+      this.filteredUsers = data;
     })
 
     this.postService.getAllPosts().subscribe(data => {
@@ -70,6 +72,11 @@ export class HomeComponent implements OnInit{
   //     return null;
   //   }
   // }
+
+  onKey(event: any){
+    this.userSearch = event.target.value;
+    this.filteredUsers = this.users.filter((user: any) => user.userName.includes(this.userSearch))
+  }
 
   onClickLike(post: any){
     this.newLike = {

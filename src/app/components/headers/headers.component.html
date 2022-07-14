@@ -1,45 +1,18 @@
-<!-- <nav class="navbar navbar-expand navbar-dark" style="background-color: #10202b;">
-    <div class="navbar-nav d-flex">
-        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
-        <a class="nav-item nav-link">Search</a>
-        <a class="nav-item nav-link ml-auto" (click)="onLogout()">Logout</a>
-    </div>
-</nav> -->
-
-<!-- <div class="top">
-    <nav class="navbar">
-        <div>
-            <img src="https://assets.ccbp.in/frontend/intermediate-rwd/instagram-story-viewer-logo.png" class="logo" />
-        </div>
-        <div class="search">
-            <input type="text" class="input" />
-            <button class="btn btn-primary ml-2">Search</button>
-        </div>
-        <div class="navbar-right">
-            <div class="options-container">
-                <a class="option" href="#">Users</a>
-                <a class="option" href="#">Logout</a>
-            </div>
-            <img src="https://assets.ccbp.in/frontend/intermediate-rwd/search-icon-img.png" class="search-icon" />
-        </div>
-    </nav>
-</div> -->
-
 <nav *ngIf="displayHeaders" class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" routerLink="/home">
         <img src="https://findicons.com/files/icons/1972/wood_social_networking/512/blogger_logo_square_webtreatsetc.png" class="logo" />
     </a>
+    <h3 *ngIf="showLogout" class="name mt-3">Hello... {{currentUser.userName}}!</h3>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-            <a *ngIf="showLogout" class="nav-link options" routerLink="/userDetails">User Details</a>
-            <a *ngIf="showLogout && admin" class="nav-link options" routerLink="/users">Users</a>
-            <a *ngIf="showRegister" class="nav-link options" routerLink="/register">Register</a>
-            <a *ngIf="showLogin" class="nav-link options" routerLink="/login">Login</a>
-            <a *ngIf="showLogout" class="nav-link options" (click)="onLogout()">Logout</a>
+            <a *ngIf="showLogout" class="nav-link name" routerLink="/userDetails">User Details</a>
+            <a *ngIf="showLogout && admin" class="nav-link name" routerLink="/users">Users</a>
+            <a *ngIf="showRegister" class="nav-link name" routerLink="/register">Register</a>
+            <a *ngIf="showLogin" class="nav-link name" routerLink="/login">Login</a>
+            <a *ngIf="showLogout" class="nav-link name" (click)="onLogout()">Logout</a>
         </div>
     </div>
 </nav>

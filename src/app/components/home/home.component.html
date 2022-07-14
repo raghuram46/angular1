@@ -4,7 +4,7 @@
             <a class="p-5 " mat-tab-link [active]="!allPostsTab" (click)="onClickAll()">
                 <p class="user-card">All</p>
             </a>
-            <a class="p-5" mat-tab-link *ngFor="let user of users"
+            <a class="p-5" mat-tab-link *ngFor="let user of filteredUsers"
                (click)="activeLink = user" (click)="onClickUser(user.posts)"
                [active]="activeLink == user">
                <p class="user-card ">{{user.userName.split(" ")[0]}}</p>
@@ -46,6 +46,7 @@
             </ul>
         </div>
         <div class="col-2">
+            <input type="text" class="search p-2 mt-3 ml-3" placeholder="search user" (keyup)="onKey($event)" />
             <button (click)="openPostDialog()" class="btn btn-success mt-3 ml-3 mr-0">Create New Post</button>
         </div>
     </div>

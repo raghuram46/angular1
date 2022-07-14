@@ -14,7 +14,7 @@ export class HeadersComponent implements OnInit {
   currentUser: any;
   admin: boolean = false;
   displayHeaders: boolean = true;
-
+  
   constructor(private router: Router, private cookies: CookieService) {
     router.events.subscribe((event: Event) => {
       
@@ -51,6 +51,7 @@ export class HeadersComponent implements OnInit {
       this.admin = true;
     }
   }
+
 
   onLogout(){
     this.cookies.delete('jwt_token');
